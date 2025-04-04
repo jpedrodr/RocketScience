@@ -42,6 +42,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain:info"))
+
+    implementation(project(":data:info"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

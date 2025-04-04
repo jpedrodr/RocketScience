@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Rocket Science"
 include(":app")
- 
+
+include(":domain:info")
+
+include(":data:info")
