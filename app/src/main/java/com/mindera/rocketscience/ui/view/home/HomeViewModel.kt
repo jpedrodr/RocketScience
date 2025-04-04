@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getCompanyInfoUseCase: GetCompanyInfoUseCase,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+//    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
     init {
@@ -28,7 +28,7 @@ class HomeViewModel @Inject constructor(
     val uiState = _uiState.asStateFlow()
 
     fun loadCompanyInfo() {
-        viewModelScope.launch(ioDispatcher) {
+        viewModelScope.launch(Dispatchers.IO) {
             val companyInfo = getCompanyInfoUseCase()
             _uiState.update {
                 it.copy(companyInfo = companyInfo.toUiModel())

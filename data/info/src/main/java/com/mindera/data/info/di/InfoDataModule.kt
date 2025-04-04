@@ -1,11 +1,13 @@
 package com.mindera.data.info.di
 
 import com.mindera.data.info.CompanyInfoRepositoryImpl
+import com.mindera.data.info.api.InfoService
 import com.mindera.domain.info.repository.CompanyInfoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
@@ -13,26 +15,12 @@ import javax.inject.Singleton
 object InfoDataModule {
 
     @Provides
-    fun provideBaseUrl(): String = "https://api.spacexdata.com/v3/"
-
-    @Provides
     @Singleton
-    fun provideRetrofit(baseUrl: String): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
+    fun provideInfoService(retrofit: Retrofit): InfoService  =
+        retrofit.create(InfoService::class.java)
 
     @Provides
-    @Singleton
-    fun provideMyApiService(retrofit: Retrofit): MyApiService {
-        return retrofit.create(MyApiService::class.java)
-    }
-
-    @Provides
-    fun provideCompanyInfoRepository(): CompanyInfoRepository {
-        return CompanyInfoRepositoryImpl()
-    }
+    fun provideCompanyInfoRepository(
+        infoService: InfoService
+    ): CompanyInfoRepository = CompanyInfoRepositoryImpl(infoService = infoService)
 }

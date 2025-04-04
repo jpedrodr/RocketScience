@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mindera.data.info"
+    namespace = "com.mindera.core.network"
     compileSdk = 35
 
     defaultConfig {
@@ -34,13 +34,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":domain:info"))
-
     implementation(libs.androidx.core.ktx)
 
     implementation(libs.hilt.android)
     implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp3)
 
     testImplementation(libs.junit)
 
