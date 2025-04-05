@@ -11,8 +11,8 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class CompanyInfoRepositoryImpl @Inject constructor(
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-    private val infoService: InfoService
+    private val infoService: InfoService,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : CompanyInfoRepository {
 
     override suspend fun getCompanyInfo(): CompanyInfoDomainModel = withContext(ioDispatcher) {

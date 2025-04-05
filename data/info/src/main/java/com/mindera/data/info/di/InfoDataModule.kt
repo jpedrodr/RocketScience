@@ -16,11 +16,11 @@ object InfoDataModule {
 
     @Provides
     @Singleton
-    fun provideInfoService(retrofit: Retrofit): InfoService  =
+    fun provideInfoService(retrofit: Retrofit): InfoService =
         retrofit.create(InfoService::class.java)
 
     @Provides
     fun provideCompanyInfoRepository(
         infoService: InfoService
-    ): CompanyInfoRepository = CompanyInfoRepositoryImpl(infoService = infoService)
+    ): CompanyInfoRepository = CompanyInfoRepositoryImpl(infoService)
 }

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.hilt.android)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 
 android {
@@ -35,6 +36,7 @@ android {
 
 dependencies {
     implementation(project(":domain:info"))
+    implementation(project(":core:network"))
 
     implementation(libs.androidx.core.ktx)
 

@@ -6,7 +6,6 @@ import com.mindera.domain.info.usecase.GetCompanyInfoUseCase
 import com.mindera.rocketscience.model.CompanyInfoUiModel
 import com.mindera.rocketscience.model.mapper.toUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,8 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getCompanyInfoUseCase: GetCompanyInfoUseCase,
-//    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val getCompanyInfoUseCase: GetCompanyInfoUseCase
 ) : ViewModel() {
 
     init {
@@ -31,6 +29,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val companyInfo = getCompanyInfoUseCase()
             _uiState.update {
+                println("joaorosa | companyInfo=$companyInfo")
                 it.copy(companyInfo = companyInfo.toUiModel())
             }
         }

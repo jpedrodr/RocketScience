@@ -25,4 +25,5 @@ include(":app")
 include(":domain:info")
 
 include(":data:info")
-include(":network")
+
+include(":core:network")

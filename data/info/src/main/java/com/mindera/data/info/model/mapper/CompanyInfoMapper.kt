@@ -7,6 +7,7 @@ fun CompanyInfoDataModel.toDomainModel() = CompanyInfoDomainModel(
     companyName = companyName,
     founderName = founderName,
     foundedYear = foundedYear,
+    employees = employees,
     launchSites = launchSites,
     valuation = valuation
 )

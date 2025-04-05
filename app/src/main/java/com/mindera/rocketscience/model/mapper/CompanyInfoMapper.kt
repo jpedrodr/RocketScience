@@ -7,6 +7,7 @@ fun CompanyInfoDomainModel.toUiModel() = CompanyInfoUiModel(
     companyName = companyName,
     founderName = founderName,
     foundedYear = foundedYear,
+    employees = employees,
     launchSites = launchSites,
     valuation = valuation
 )

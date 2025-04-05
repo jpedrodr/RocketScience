@@ -1,5 +1,6 @@
 package com.mindera.core.network.di
 
+import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
@@ -9,11 +10,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import javax.inject.Singleton
 
+@Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
     @Provides
     fun provideBaseUrl(): String = "https://api.spacexdata.com/v3/"
+
+    private val json = Json {
+        isLenient = true
+        ignoreUnknownKeys = true
+    }
 
     @Provides
     @Singleton
@@ -21,7 +28,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(
-                Json.asConverterFactory(
+                json.asConverterFactory(
                     "application/json; charset=UTF8".toMediaType())
             )
             .build()
